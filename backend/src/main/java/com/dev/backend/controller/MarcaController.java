@@ -6,10 +6,7 @@ import com.dev.backend.service.MarcaService;
 import jakarta.persistence.GeneratedValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,18 +17,22 @@ public class MarcaController {
     @Autowired
     private MarcaService marcaService;
 
+    @GetMapping("/")
     public List<Marca> buscarTodos(){
         return marcaService.buscarTodos();
     }
 
+    @PostMapping("/")
     public Marca inserir(@RequestBody Marca marca){
         return marcaService.inserir(marca);
     }
 
+    @PutMapping("/")
     public Marca alterar(@RequestBody Marca marca){
         return marcaService.atualizar(marca);
     }
 
+    @DeleteMapping("/{id}")
     public void excluir(@PathVariable("id") long id){
         marcaService.excluir(id);
     }
